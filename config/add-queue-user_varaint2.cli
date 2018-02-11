@@ -1,0 +1,16 @@
+
+# add own security for InfoQueue
+/subsystem=messaging/hornetq-server=default/security-setting=jms.queue.InfoQueue:add()
+
+
+# add new remote consumer role for pull bridge
+/subsystem=messaging/hornetq-server=default/security-setting=jms.queue.InfoQueue/role=\
+InfoMessageConsumer:add(\
+send=false,consume=true, create-durable-queue=false, create-non-durable-queue=false, delete-durable-queue=false,\
+delete-non-durable-queue=false, manage=false)
+
+
+
+# Security
+/subsystem=messaging-activemq/server=default/security-setting=jms.queue.InfoMessageQueue:add
+/subsystem=messaging-activemq/server=default/security-setting=jms.queue.InfoMessageQueue/role=InfoQueueUser:add(consume=true, send=true)

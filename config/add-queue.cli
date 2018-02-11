@@ -1,0 +1,14 @@
+# Add
+jms-queue add --queue-address=InfoQueue --entries=[java:/jms/queue/InfoQueue,java:jboss/exported/jms/queue/InfoQueue]
+
+# Add InfoDLQ
+jms-queue add --queue-address=InfoDLQ --entries=[java:/jms/queue/InfoDLQ,java:jboss/exported/jms/queue/InfoDLQ]
+
+# Set dead-letter queue, redelivery-delay, max-delivery-attempts
+/subsystem=messaging-activemq/server=default/address-setting=jms.queue.InfoQueue:add(dead-letter-address="jms.queue.InfoDLQ",redelivery-delay=5000,max-delivery-attempts=5)
+
+# Security
+/subsystem=messaging-activemq/server=default/security-setting=jms.queue.InfoQueue:add
+/subsystem=messaging-activemq/server=default/security-setting=jms.queue.InfoQueue/role=InfoQueueRole:add(consume=true, send=true)
+
+# don't forget to add the application user this role

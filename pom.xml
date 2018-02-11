@@ -17,6 +17,7 @@
     <properties>
         <app.name>info-service</app.name>
         <app.version>1.0</app.version>
+
         <resources.encoding>UTF-8</resources.encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -25,6 +26,8 @@
         <maven.war.plugin>3.2.0</maven.war.plugin>
         <slf4j.version>1.7.7</slf4j.version>
         <javax.ws.rs-api>2.0.1</javax.ws.rs-api>
+        <javax.jms>2.0.1</javax.jms>
+        <slf4j-api>1.7.25</slf4j-api>
     </properties>
 
     <dependencyManagement>
@@ -47,8 +50,59 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${maven.war.plugin}</version>
             </dependency>
+
+            <dependency>
+                <groupId>javax.jms</groupId>
+                <artifactId>javax.jms-api</artifactId>
+                <version>${javax.jms}</version>
+            </dependency>
+
+            <!-- logging dependencies -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api}</version>
+            </dependency>
+
+            <!-- test -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.test.junit}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${version.test.mockito}</version>
+                <scope>test</scope>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
+
+
+    <build>
+        <resources>
+            <!-- VersionData.java -->
+            <resource>
+                <directory>src/main/template</directory>
+                <includes>
+                    <include>**/*.java</include>
+                </includes>
+                <filtering>true</filtering>
+                <targetPath>../generated/main/java</targetPath>
+            </resource>
+
+            <!-- Maven Standard -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+
+        </resources>
+    </build>
 
     <scm>
         <url>https://github.com/nusmanov/javaee7</url>
