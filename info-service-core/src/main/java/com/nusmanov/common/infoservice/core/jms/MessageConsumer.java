@@ -2,7 +2,9 @@ package com.nusmanov.common.infoservice.core.jms;
 
 
 import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJBException;
 import javax.ejb.MessageDriven;
+import javax.jms.MapMessage;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 
@@ -36,6 +38,24 @@ public class MessageConsumer implements MessageListener {
     public void onMessage(final Message message) {
         LOG.info("called with message: {}", message);
 
+        Long id;
+        String cause;
+
+        try {
+
+            MapMessage mapMessage = (MapMessage) message;
+
+            LOG.info("calling with values: {}", mapMessage);
+
+            id = (Long) mapMessage.getObject("ID");
+            cause = mapMessage.getString("CAUSE");
+
+            // now you can do something with datas from the message
+
+        } catch (Exception e) {
+            LOG.error("Failure with message " + message, e);
+            throw new EJBException(e);
+        }
 
     }
 }
