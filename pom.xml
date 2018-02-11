@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.nusmanov.common</groupId>
+    <artifactId>info-service</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>info-service</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>info-service-core</module>
+        <module>info-service-persistence</module>
+        <module>info-service-web</module>
+        <module>info-service-ear</module>
+    </modules>
+
+    <properties>
+        <app.name>info-service</app.name>
+        <app.version>1.0</app.version>
+        <resources.encoding>UTF-8</resources.encoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <ejb.api>3.0</ejb.api>
+        <maven.war.plugin>3.2.0</maven.war.plugin>
+        <slf4j.version>1.7.7</slf4j.version>
+        <javax.ws.rs-api>2.0.1</javax.ws.rs-api>
+    </properties>
+
+    <dependencyManagement>
+        <!-- third part dependencies -->
+        <dependencies>
+            <dependency>
+                <groupId>javax.ws.rs</groupId>
+                <artifactId>javax.ws.rs-api</artifactId>
+                <version>${javax.ws.rs-api}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.ejb</groupId>
+                <artifactId>ejb-api</artifactId>
+                <version>${ejb.api}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.plugin}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <scm>
+        <url>https://github.com/nusmanov/javaee7</url>
+        <connection>https://github.com/nusmanov/javaee7.git</connection>
+        <developerConnection>https://github.com/nusmanov/javaee7.git</developerConnection>
+        <!--<tag>hotfix/1.0.0</tag>-->
+    </scm>
+
+</project>

@@ -1,0 +1,19 @@
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# eclipse project file
+.settings/
+.classpath
+.project
+
+# Maven 
+target/
+
+# OS
+.DS_Store
+
+# Various
+package-info.java
